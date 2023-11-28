@@ -1,13 +1,16 @@
 <template>
     <header>
-        <!-- Image and text -->
-        <nav class="navbar navbar-dark bg-primary">
-            <a class="nav-item nav-link" href="http://localhost:5173/">
-                <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30"
-                    class="d-inline-block align-top" alt="">
-                <h3 class="">Il mio Blog</h3>
-            </a>
-        </nav>
+        <a class="nav-item nav-link" href="http://localhost:5173/">
+            <div class="blog_icon">
+                <div>
+                    <img src="/header_icon.svg" width="50" height="50" class="d-inline-block align-top" alt="">
+                </div>
+
+                <div class="blog_title">
+                    <h1>Il Blog che ti fa volare...</h1>
+                </div>
+            </div>
+        </a>
     </header>
 </template>
   
@@ -17,4 +20,32 @@ export default {
 };
 </script>
   
-<style scoped></style>
+<style lang="scss">
+@import '../styles/partials/mixins';
+@import '../styles/partials/variables';
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background-color: $header-bg-color;
+    height: 80px;
+    top: 0;
+    @include flex-start-center;
+
+    a {
+        .blog_icon {
+            display: flex;
+            color: rgb(255, 255, 255);
+
+            .blog_title {
+                h1:hover {
+                    color: rgb(145, 255, 0);
+                    text-shadow: 3px 3px 2px black;
+                }
+            }
+        }
+    }
+
+}
+</style>
