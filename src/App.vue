@@ -1,5 +1,6 @@
 <script>
 import Header from './components/Header.vue'
+import Jumbotron from './components/Jumbotron.vue'
 import PostCard from './components/PostCard.vue'
 import axios from 'axios';
 
@@ -24,26 +25,48 @@ export default {
   },
   components: {
     Header,
+    Jumbotron,
     PostCard
   }
 }
 </script>
 
 <template>
-  <body>
+  <div id="app">
     <Header />
+    <Jumbotron />
     <main>
-      <h1>I MIEI POST</h1>
-
-      <div class="container">
-        <div class="row">
-          <PostCard v-for="post in posts" :key="post.id" :post="post" />
+      <div class="container-fluid">
+        <div class="container text-center">
+          <h1>I MIEI POST</h1>
+          <div class="row">
+            <PostCard v-for="post in posts" :key="post.id" :post="post" />
+          </div>
         </div>
       </div>
     </main>
-  </body>
+  </div>
 </template>
 
 <style lang="scss">
-@use './styles/general.scss';
+@import './styles/general.scss';
+@import './styles/partials/variables';
+
+#app {
+  margin-top: 80px;
+
+  main {
+    .container-fluid {
+      background-color: $container-bg-color;
+
+      .container {
+        padding-top: 20px;
+
+        h1 {
+          color: white;
+        }
+      }
+    }
+  }
+}
 </style>
