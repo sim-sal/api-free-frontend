@@ -1,0 +1,23 @@
+@use './partials/variables' as *;
+
+// importiamo Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+// regole generali
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nova Square', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    width: 70%;
+}

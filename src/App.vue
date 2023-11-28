@@ -1,30 +1,49 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import Header from './components/Header.vue'
+import PostCard from './components/PostCard.vue'
+import axios from 'axios';
+
+const API = "http://localhost:3000/posts"
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      posts: []
+    }
+  },
+  mounted() {
+    axios.get(API)
+      .then(res => {
+
+        this.posts = res.data;
+
+        console.log(JSON.stringify(this.posts, null, 2));
+      })
+      .catch(err => console.error(err));
+  },
+  components: {
+    Header,
+    PostCard
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <body>
+    <Header />
+    <main>
+      <h1>I MIEI POST</h1>
+
+      <div class="container">
+        <div class="row">
+          <PostCard v-for="post in posts" :key="post.id" :post="post" />
+        </div>
+      </div>
+    </main>
+  </body>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+<style lang="scss">
+@use './styles/general.scss';
 </style>
